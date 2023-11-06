@@ -10,7 +10,7 @@ class BaseController {
     private $twig;
     public function __construct()
     {
-        $loader = new FilesystemLoader(__DIR__ . '/../../views');
+        $loader = new FilesystemLoader(__DIR__ . '/../../resources/views');
         $this->twig = new Environment($loader);
     }
 

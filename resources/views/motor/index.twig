@@ -1,0 +1,27 @@
+{% extends "components/layout.twig" %}
+
+{% block banner %}
+    <div id="banner">
+        <img class="w-full" src="images/banner2.jpg" alt="">
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div id="products" class="my-12">
+        <h2 class="text-6xl text-gray-300 font-bold font">
+            Lựa chọn phong cách của bạn
+        </h2>
+        <div class="flex gap-5 mb-5">
+            {% for item in range(0,5) %}
+                <a class="inline-block mt-10 p-2 px-3 rounded-lg text-red-600 border-2 border-red-600" href="">
+                    abc
+                </a>
+            {% endfor %}
+        </div>
+        <div class="grid grid-cols-4 gap-10 overflow-auto">
+            {% for item in range(0, 3) %}
+                {% include "components/motor_card_slim.twig" %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

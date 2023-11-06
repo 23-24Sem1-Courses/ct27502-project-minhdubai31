@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu xe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://kit.fontawesome.com/fff06ecf43.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="bg-red-600 py-3 text-white">
+        <nav class="max-w-6xl m-auto flex gap-14 items-center">
+            <div>
+                <p class="text-2xl uppercase font-black">Mymotor</p>
+            </div>
+            <div class="flex-grow flex justify-between items-center">
+                <ul class="flex gap-10">
+                    <li><a href="">Trang chủ</a></li>
+                    <li><a href="">Giới thiệu</a></li>
+                    <li><a href="">Sản phẩm</a></li>
+                </ul>
+                <div class="flex-grow"></div>
+                {% include "partials/search.twig" %}
+            </div>
+            <div>
+                <a href=""><i class="fa-solid fa-gear pe-4"></i>Quản lý</a>
+            </div>
+        </nav>
+    </header>
+
+    {% block banner %}{% endblock %}
+    
+    <div id="content">
+        <div class="max-w-6xl m-auto">
+            {% block content %}{% endblock %}   
+        </div>
+    </div>
+
+    <footer class="bg-gray-200 py-10">
+        <div class="max-w-6xl m-auto flex gap-20">
+            <div>
+                <p class="font-bold mb-2">Địa chỉ liên hệ</p>
+                <p class="text-xs leading-5">
+                    Số GCNĐKDN: 1234567890
+                    <br>Đăng ký lần đầu: Ngày 7/1/2004
+                    <br>Đăng ký thay đổi lần thứ 14: Ngày 31/3/2023.
+                    <br>Cơ quan cấp: Phòng Đăng ký kinh doanh và đầu tư Trà Hoàng Minh
+                    <br>Địa chỉ: Đường vào tim em, Việt Nam
+                </p>
+            </div>
+            <div>
+                <p class="font-bold mb-2">Hotline</p>
+                <p class="text-xs leading-5">
+                    Hotline: <span class="text-red-600 text-lg font-bold">1800 8001</span> (Miễn phí cho tất cả thuê bao)
+                    <br>Email: cr@honda.com.vn
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

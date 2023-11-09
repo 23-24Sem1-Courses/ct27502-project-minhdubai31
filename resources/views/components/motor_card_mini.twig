@@ -1,23 +1,23 @@
-<div class="grid grid-cols-5 gap-10 my-12">
-	<div class="col-span-2">
+<div class="flex gap-10">
+	<div class="w-44">
 		<img class="w-full object-contain" src="images/motor_example.png" alt="">
 	</div>
-	<div class="col-span-3">
-		<p class="text-4xl text-red-600 font-bold">
+	<div class="w-2/3">
+		<p class="text text-red-600 font-bold">
 			CBR1000RR-R Fireblade SP
 		</p>
-		<p class="text-2xl mb-5 font-bold">Giá từ:
+		<p class="text mb-5">Giá từ:
 			{{ 1000000000|number_format(0, '', '.') }}
 			VNĐ</p>
-		<p class="text-gray-500">
+		<p class="text-xs text-gray-500">
 			ĐƯỜNG ĐUA LÀ SÂN CHƠI CỦA BẠN Nơi bạn sống thực với đam mê CBR1000RR-R Fireblade SP được trang bị hệ thống giảm xóc Smart Electronic Control (S-EC) thế hệ 2 và cụm phanh Brembo Stylema trên phanh trước. Với khả năng vận hành vượt trội, CBR1000RR-R Fireblade SP là món quà đắt giá nhất của Honda dành tặng cho các tín đồ tốc độ. HÃY TẬN HƯỞNG !!!
 		</p>
-		<div class="colors flex flex-wrap items-center mt-5">
-			<p class="font-bold w-full mb-2">Màu sắc:</p>
+		<div class="colors text-xs flex items-center mt-5">
+			<p class="font-bold me-6">Màu sắc:</p>
 			{% for item in range(0,3) %}
 				<div class="flex items-center">
-					<span class="rounded-md w-12 h-6 inline-block me-2" style="background-color: black"></span>
-					<span class="me-5">Đen</span>
+					<span class="rounded-md w-6 h-4 inline-block me-1" style="background-color: black"></span>
+					<span class="me-4">Đen</span>
 				</div>
 			{% endfor %}
 		</div>

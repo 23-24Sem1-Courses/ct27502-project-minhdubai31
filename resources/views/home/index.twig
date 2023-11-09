@@ -1,39 +1,39 @@
 {% extends "components/layout.twig" %}
 
 {% block banner %}
-    <div id="banner">
-        <img class="w-full" src="images/banner.png" alt="">
-    </div>
+	<div id="banner">
+		<img class="w-full" src="images/banner.png" alt="">
+	</div>
 {% endblock %}
 
 {% block content %}
-    <div id="introduce" class="my-12">
-        <h2 class="text-6xl text-gray-300 font-bold font">
-            Giới thiệu
-        </h2>
-        <div class="grid grid-cols-5 items-center gap-10">
-            <div class="col-span-3">
-                <p class="text-justify">
-                    Đại lý Mymotor - điểm đến tin cậy cho những người yêu thương dòng sản phẩm Honda. Với nhiều năm kinh nghiệm, chúng tôi cam kết mang đến dịch vụ tận tâm và sản phẩm chất lượng cao. Tại đây, quý khách sẽ được trải nghiệm đa dạng các mẫu xe Honda mới nhất, cả xe hơi và xe máy. Nhân viên chuyên nghiệp của chúng tôi luôn sẵn lòng lắng nghe và đáp ứng mọi yêu cầu của quý khách. Hãy đến với chúng tôi để sở hữu một chiếc xe Honda xuất sắc.
-                </p>
-            </div>
-            <div class="col-span-2">
-                <img class="rounded-lg border shadow-xl" src="images/head_honda.jpg" alt="">
-            </div>
-        </div>
-    </div>
+	<div id="introduce" class="my-12">
+		<h2 class="text-6xl text-gray-300 font-bold font">
+			Giới thiệu
+		</h2>
+		<div class="grid grid-cols-5 items-center gap-10">
+			<div class="col-span-3">
+				<p class="text-justify">
+					Đại lý Mymotor - điểm đến tin cậy cho những người yêu thương dòng sản phẩm Honda. Với nhiều năm kinh nghiệm, chúng tôi cam kết mang đến dịch vụ tận tâm và sản phẩm chất lượng cao. Tại đây, quý khách sẽ được trải nghiệm đa dạng các mẫu xe Honda mới nhất, cả xe hơi và xe máy. Nhân viên chuyên nghiệp của chúng tôi luôn sẵn lòng lắng nghe và đáp ứng mọi yêu cầu của quý khách. Hãy đến với chúng tôi để sở hữu một chiếc xe Honda xuất sắc.
+				</p>
+			</div>
+			<div class="col-span-2">
+				<img class="rounded-lg border shadow-xl" src="images/head_honda.jpg" alt="">
+			</div>
+		</div>
+	</div>
 
-    <div id="hot-products" class="my-12">
-        <h2 class="text-6xl text-gray-300 font-bold font mb-5">
-            Sản phẩm nổi bật
-        </h2>
-        <div class="grid grid-cols-4 gap-10 overflow-auto">
-            {% for item in range(0, 3) %}
-                {% include "components/motor_card_slim.twig" %}
-            {% endfor %}
-        </div>
-        <div class="mt-10 text-center">
-            <a class="p-3 px-5 rounded-lg bg-red-600 text-white inline-block hover:brightness-75 duration-200" href="">Xem tất cả sản phẩm</a>
-        </div>
-    </div>
+	<div id="hot-products" class="my-12">
+		<h2 class="text-6xl text-gray-300 font-bold font mb-5">
+			Sản phẩm nổi bật
+		</h2>
+		<div class="grid grid-cols-4 gap-10 overflow-auto">
+			{% for item in range(0, 3) %}
+				{% include "components/motor_card_slim.twig" %}
+			{% endfor %}
+		</div>
+		<div class="mt-10 text-center">
+			<a class="p-3 px-5 rounded-lg bg-red-600 text-white inline-block hover:brightness-75 duration-200" href="">Xem tất cả sản phẩm</a>
+		</div>
+	</div>
 {% endblock %}

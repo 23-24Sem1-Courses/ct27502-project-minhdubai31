@@ -3,7 +3,8 @@
         "vlucas/phpdotenv": "^5.5",
         "illuminate/database": "^10.29",
         "twig/twig": "^3.7",
-        "bramus/router": "^1.6"
+        "bramus/router": "^1.6",
+        "illuminate/http": "^10.31"
     },
     "autoload": {
 		"psr-4": {

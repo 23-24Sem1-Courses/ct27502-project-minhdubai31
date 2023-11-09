@@ -1,0 +1,29 @@
+{% extends "components/layout.twig" %}
+
+
+{% block content %}
+    <h2 class="text-6xl text-gray-300 font-bold font my-12">
+        Quản lý xe
+    </h2>
+
+    <div id="products-list">
+        <table class="w-full border-collapse">
+            <tr>
+                <th class="border border-gray-500 bg-gray-100 p-2">Loại xe</th>
+                <th class="border border-gray-500 bg-gray-100 p-2 w-3/4">Thông tin xe</th>
+                <th class="border border-gray-500 bg-gray-100 p-2">Cập nhật</th>
+            </tr>
+            <tr>
+                <td class="border border-gray-500 uppercase text-xl text-center" rowspan="7">Xe số</td>
+                <td class="border border-gray-500 p-3 px-6">{% include "components/motor_card_mini.twig" %}</td>
+                <td class="border border-gray-500 text-center">Sua Xoa Cap nhat</td>
+            </tr>
+            {% for item in range(0,5) %}
+                <tr>
+                    <td class="border border-gray-500 p-3 px-6">{% include "components/motor_card_mini.twig" %}</td>
+                    <td class="border border-gray-500 text-center">Sua Xoa Cap nhat</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends "components/layout.twig" %}
+
+
+{% block content %}
+	<link rel="stylesheet" href="css/coloris.css"/>
+	<h2 class="text-6xl text-gray-300 font-bold font my-12">
+		Thêm xe mới
+	</h2>
+
+	<div id="product-edit">
+		<div class="bg-gray-200 rounded-lg p-5">
+			<form action="">
+				<div id="base" class="grid grid-cols-5 gap-10 m-5">
+					<div class="col-span-2 text-center">
+						<img id="main-image" class="w-full object-contain rounded-lg" src="images/motor_example.png" alt="">
+						<label for="selected-image" class="mt-3 cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white inline-block me-2 border-2 border-red-600">Thay ảnh mới</label>
+						<input id="selected-image" hidden type="file" accept="image/*" name="main-image">
+					</div>
+					<div class="col-span-3">
+						<input class="text-4xl text-red-600 font-bold rounded-lg px-5 focus:outline-none leading-loose w-full" placeholder="Tên xe">
+						<p class="text-2xl mb-5 font-bold mt-2">Giá từ:
+							<input class="rounded-lg leading-relaxed px-5 focus:outline-none" placeholder="Giá xe" type="text">
+							VNĐ</p>
+						<textarea class="text-gray-400 rounded-lg w-full focus:outline-none p-3" rows="5" placeholder="Mô tả"></textarea>
+						<div class="colors flex flex-wrap items-center mt-5">
+							<p class="font-bold w-full mb-2">Màu sắc:</p>
+							<div class="w-full mb-2 flex items-center gap-1">
+								<input class="rounded-lg leading-relaxed p-2 px-5 focus:outline-none" placeholder="Tên màu" type="text">
+								<div class="clr-field">
+									<button type="button" aria-labelledby="clr-open-label" class="rounded-r-lg"></button>
+									<input class="rounded-lg w-36 leading-relaxed p-2 px-5 focus:outline-none" placeholder="Mã màu" type="text" data-coloris="">
+								</div>
+								<i class="text-2xl text-red-600 ms-3 fa-solid fa-xmark remove-color cursor-pointer" onclick="removeColor(this);"></i>
+							</div>
+							<div class="flex items-center">
+								<span id="add-color" class="rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white cursor-pointer inline-block me-2 border-2 border-red-600">+ Thêm màu mới</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="specs" class="my-12">
+					<h2 class="text-2xl font-bold my-2">Thông số kỹ thuật</h2>
+					<div class="bg-gray-300/75 rounded-lg p-5 py-10">
+						<ul class="w-2/3 m-auto">
+							<li class="grid grid-cols-2 mb-2">
+								<p class="bg-white/60 rounded-lg p-3 px-16 leading-relaxed">Khối lượng <span class="text-xs">(kg)</span></p>
+								<input type="number" step="0.1" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none"
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="leading-relaxed p-3 px-16">Dài x Rộng x Cao <span class="text-xs">(cm)</span></p>
+								<div class="grid grid-cols-11 ms-2">
+									<input type="number" step="0.1" class="col-span-3 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none">
+									<span class="col-span-1 m-auto">x</span>
+									<input type="number" step="0.1" class="col-span-3 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none">
+									<span class="col-span-1 m-auto">x</span>
+									<input type="number" step="0.1" class="col-span-3 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none">
+								</div>
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="bg-white/60 rounded-lg p-3 px-16 leading-relaxed">Độ cao yên <span class="text-xs">(cm)</span></p>
+								<input type="number" step="0.1" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none"
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="leading-relaxed p-3 px-16">Khoảng sáng gầm xe <span class="text-xs">(cm)</span></p>
+								<input type="number" step="0.1" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none">
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="bg-white/60 rounded-lg p-3 px-16 leading-relaxed">Dung tích bình xăng <span class="text-xs">(lít)</span></p>
+								<input type="number" step="0.1" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none"
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="leading-relaxed p-3 px-16">Mức tiêu thụ nhiên liệu <span class="text-xs">(lít/100km)</span></p>
+								<input type="number" step="0.1" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none">
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="bg-white/60 rounded-lg p-3 px-16 leading-relaxed">Dung tích xy-lanh <span class="text-xs">(cc)</span></p>
+								<input type="number" step="0.1" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none"
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="gallery" class="my-12">
+					<h2 class="text-2xl font-bold my-2">Thư viện ảnh</h2>
+					
+					<div class="pswp-gallery grid grid-cols-12 gap-1.5" id="photoswipe-gallery">
+						{% for item in range(0,5) %}    
+							<img
+								src="images/banner.png"
+								alt=""
+								class="col-span-3 w-full h-44 object-cover rounded-lg"
+							/>
+						{% endfor %}
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	<!-- Modal toggle -->
+	<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
+		Toggle modal
+	</button>
+
+	<!-- Main modal -->
+	<div id="default-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+		<div
+			class="relative w-full max-w-2xl max-h-full">
+			<!-- Modal content -->
+			<div
+				class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+				<!-- Modal header -->
+				<div class="flex items-start justify-between p-4 rounded-t dark:border-gray-600">
+					<h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+						Terms of Service
+					</h3>
+					<button type="button" class="text-gray-400 bg-transparent hover:border bg-gray-100 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+						<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 14">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+						</svg>
+						<span class="sr-only">Close modal</span>
+					</button>
+				</div>
+				<!-- Modal body -->
+				<div class="p-6 space-y-6"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+
+	<script src="js/coloris.js"></script>
+	<script>
+		$(function () {
+			$("#add-color").click((e) => {
+				let addcolor = `
+						<div class="w-full mb-2 flex items-center gap-1">
+							<input class="rounded-lg leading-relaxed p-2 px-5 focus:outline-none" placeholder="Tên màu" type="text">
+							<div class="clr-field">
+								<button type="button" aria-labelledby="clr-open-label" class="rounded-r-lg"></button>
+								<input class="rounded-lg w-36 leading-relaxed p-2 px-5 focus:outline-none" placeholder="Mã màu" type="text" data-coloris>
+							</div>
+							<i class="text-2xl text-red-600 ms-3 fa-solid fa-xmark remove-color cursor-pointer" onclick="removeColor(this);"></i>
+						</div>
+					`;
+
+				$(e.target).parent().before(addcolor);
+			});
+
+			$("#selected-image").change((e) => {
+				let imageURL = URL.createObjectURL(e.target.files[0]);
+				$("#main-image").attr("src", imageURL);
+			})
+		});
+
+		function removeColor(el) {
+			$(el).parent().remove();
+		}
+	</script>
+{% endblock %}

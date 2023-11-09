@@ -1,7 +1,8 @@
 <?php
 
-use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
+use Twig\TwigFunction;
+use Twig\Loader\FilesystemLoader;
 
 function redirect($location)
 {
@@ -23,6 +24,12 @@ function back()
 function view($viewpath, array $data = []) {
     $loader = new FilesystemLoader(__DIR__ . '/../../resources/views');
     $twig = new Environment($loader);
+    // Define a custom function to handle assets
+    $function = new TwigFunction('asset', function ($asset) {
+        return '/' . ltrim($asset, '/');
+    });
+
+    $twig->addFunction($function);
 
     return $twig->display($viewpath, $data);
 }

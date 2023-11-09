@@ -2,17 +2,17 @@
 
 
 {% block content %}
-	<link rel="stylesheet" href="css/coloris.css"/>
+	<link rel="stylesheet" href="{{ asset('css/coloris.css') }}"/>
 	<h2 class="text-6xl text-gray-300 font-bold font my-12">
 		Thêm xe mới
 	</h2>
 
 	<div id="product-edit">
-		<div class="bg-gray-200 rounded-lg p-5">
+		<div class="bg-gray-200 rounded-lg p-5 my-12">
 			<form action="">
 				<div id="base" class="grid grid-cols-5 gap-10 m-5">
 					<div class="col-span-2 text-center">
-						<img id="main-image" class="w-full object-contain rounded-lg" src="images/motor_example.png" alt="">
+						<img id="main-image" class="w-full object-contain rounded-lg" src="{{ asset('images/motor_example.png') }}" alt="">
 						<label for="selected-image" class="mt-3 cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white inline-block me-2 border-2 border-red-600">Thay ảnh mới</label>
 						<input id="selected-image" hidden type="file" accept="image/*" name="main-image">
 					</div>
@@ -79,57 +79,18 @@
 						</ul>
 					</div>
 				</div>
-				<div id="gallery" class="my-12">
+				<div id="gallery" class="mt-12 mb-5">
 					<h2 class="text-2xl font-bold my-2">Thư viện ảnh</h2>
-					
-					<div class="pswp-gallery grid grid-cols-12 gap-1.5" id="photoswipe-gallery">
-						{% for item in range(0,5) %}    
-							<img
-								src="images/banner.png"
-								alt=""
-								class="col-span-3 w-full h-44 object-cover rounded-lg"
-							/>
-						{% endfor %}
+					<input type="file" hidden accept="image/*" name="gallery" id="selected-gallery" multiple>
+					<div class="pswp-gallery grid grid-cols-12 gap-1.5" id="gallery-images">
 					</div>
+					<label for="selected-gallery" class="mt-3 cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white inline-block me-2 border-2 border-red-600">Thêm thư viện ảnh</label>
 				</div>
 			</form>
 		</div>
 	</div>
 
-
-	<!-- Modal toggle -->
-	<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-blue-700 hover:bg-blue-800  font-medium rounded-lg text-sm px-5 py-2.5 text-center" type="button">
-		Toggle modal
-	</button>
-
-	<!-- Main modal -->
-	<div id="default-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-		<div
-			class="relative w-full max-w-2xl max-h-full">
-			<!-- Modal content -->
-			<div
-				class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-				<!-- Modal header -->
-				<div class="flex items-start justify-between p-4 rounded-t dark:border-gray-600">
-					<h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-						Terms of Service
-					</h3>
-					<button type="button" class="text-gray-400 bg-transparent hover:border bg-gray-100 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
-						<svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 14 14">
-							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-						</svg>
-						<span class="sr-only">Close modal</span>
-					</button>
-				</div>
-				<!-- Modal body -->
-				<div class="p-6 space-y-6"></div>
-			</div>
-		</div>
-	</div>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
-
-	<script src="js/coloris.js"></script>
+	<script src="{{ asset('js/coloris.js') }}"></script>
 	<script>
 		$(function () {
 			$("#add-color").click((e) => {
@@ -150,6 +111,20 @@
 			$("#selected-image").change((e) => {
 				let imageURL = URL.createObjectURL(e.target.files[0]);
 				$("#main-image").attr("src", imageURL);
+			})
+
+			$("#selected-gallery").change((e) => {
+				$("#gallery-images").html("");
+				$(e.target.files).each((index, element) => {
+					let imageURL = URL.createObjectURL(e.target.files[index]);
+					$("#gallery-images").append(`
+							<img
+								src="${imageURL}"
+								alt=""
+								class="col-span-3 w-full h-44 object-cover rounded-lg"
+							/>
+					`);
+				});
 			})
 		});
 

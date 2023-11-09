@@ -1,4 +1,6 @@
 <?php 
+
+use Bramus\Router\Router;
 require_once __DIR__ . '/vendor/autoload.php';
 
 
@@ -20,6 +22,6 @@ $manager->addConnection([
 $manager->setAsGlobal();
 $manager->bootEloquent();
 
-
-
+$router = new Router();
+$router->setNamespace('App\Controllers');
 

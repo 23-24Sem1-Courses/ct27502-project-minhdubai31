@@ -2,7 +2,7 @@
 
 {% block banner %}
 	<div id="banner">
-		<img class="w-full" src="images/banner.png" alt="">
+		<img class="w-full" src="{{ asset('images/banner.png') }}" alt="">
 	</div>
 {% endblock %}
 
@@ -18,7 +18,7 @@
 				</p>
 			</div>
 			<div class="col-span-2">
-				<img class="rounded-lg border shadow-xl" src="images/head_honda.jpg" alt="">
+				<img class="rounded-lg border shadow-xl" src="{{ asset('images/head_honda.jpg') }}" alt="">
 			</div>
 		</div>
 	</div>
@@ -33,7 +33,7 @@
 			{% endfor %}
 		</div>
 		<div class="mt-10 text-center">
-			<a class="p-3 px-5 rounded-lg bg-red-600 text-white inline-block hover:brightness-75 duration-200" href="">Xem tất cả sản phẩm</a>
+			<a class="mt-3 cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white inline-block me-2 border-2 border-red-600" href="">Xem tất cả sản phẩm</a>
 		</div>
 	</div>
 {% endblock %}

@@ -2,7 +2,7 @@
 
 {% block banner %}
     <div id="banner">
-        <img class="w-full" src="images/banner2.jpg" alt="">
+        <img class="w-full" src="{{ asset('images/banner2.jpg') }}" alt="">
     </div>
 {% endblock %}
 
@@ -11,9 +11,9 @@
         <h2 class="text-6xl text-gray-300 font-bold font">
             Lựa chọn phong cách của bạn
         </h2>
-        <div class="flex gap-5 mb-5">
+        <div class="flex gap-3 mt-10 mb-5">
             {% for item in range(0,5) %}
-                <a class="inline-block mt-10 p-2 px-3 rounded-lg text-red-600 border-2 border-red-600" href="">
+                <a class="inline-block cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white border-2 border-red-600" href="">
                     abc
                 </a>
             {% endfor %}

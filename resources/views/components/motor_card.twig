@@ -1,6 +1,6 @@
 <div class="grid grid-cols-5 gap-10 my-12">
 	<div class="col-span-2">
-		<img class="w-full object-contain" src="images/motor_example.png" alt="">
+		<img class="w-full object-contain" src="{{ asset('images/motor_example.png') }}" alt="">
 	</div>
 	<div class="col-span-3">
 		<p class="text-4xl text-red-600 font-bold">
@@ -16,7 +16,7 @@
 			<p class="font-bold w-full mb-2">Màu sắc:</p>
 			{% for item in range(0,3) %}
 				<div class="flex items-center">
-					<span class="rounded-md w-12 h-6 inline-block me-2" style="background-color: black"></span>
+					<span class="rounded-md w-16 h-7 inline-block me-2" style="background-color: black"></span>
 					<span class="me-5">Đen</span>
 				</div>
 			{% endfor %}

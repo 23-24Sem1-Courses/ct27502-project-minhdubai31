@@ -1,16 +1,16 @@
-<link rel="stylesheet" href="css/photoswipe.css">
+<link rel="stylesheet" href="{{ asset('css/photoswipe.css') }}">
 
 <div id="gallery" class="my-12">
     <h2 class="text-2xl font-bold my-2">Thư viện ảnh</h2>
     <div class="pswp-gallery grid grid-cols-12 gap-1.5" id="photoswipe-gallery">
         {% for item in range(0,5) %}    
             <a
-            href="images/banner.png"
+            href="{{ asset('images/banner.png') }}"
             target="_blank"
             class="inline-block overflow-hidden col-span-3"
             >
                 <img
-                    src="images/banner.png"
+                    src="{{ asset('images/banner.png') }}"
                     alt=""
                     class="w-full h-44 object-cover rounded-lg"
                 />
@@ -19,4 +19,4 @@
     </div>
 </div>
 
-<script type="module" src="js/photoswipe.js"></script>
+<script type="module" src="{{ asset('js/photoswipe.js') }}"></script>

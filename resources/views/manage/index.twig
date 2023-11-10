@@ -14,26 +14,34 @@
                 </a>
             {% endfor %}
         </div>
-        <a href="/motors/create" class="mt-3 cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white inline-block me-2 border-2 border-red-600">Thêm xe mới</a>
-
+        <div>
+            <a href="/motors/create" class="mt-3 cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white inline-block me-2 border-2 border-red-600">Thêm dòng xe mới</a>
+            <a href="/motors/create" class="mt-3 cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white inline-block me-2 border-2 border-red-600">Thêm xe mới</a>
+        </div>
     </div>
 
     <div id="products-list" class="mb-12 mt-3">
         <table class="w-full border-separate border-spacing-2">
             <tr>
-                <th class="rounded-lg bg-red-600 text-white p-2">Loại xe</th>
+                <th class="rounded-lg bg-red-600 text-white p-2">Dòng xe</th>
                 <th class="rounded-lg bg-red-600 text-white p-2 w-3/4">Thông tin xe</th>
                 <th class="rounded-lg bg-red-600 text-white p-2">Cập nhật</th>
             </tr>
             <tr>
                 <td class="bg-gray-50 box-border border-2 rounded-lg uppercase text-xl font-bold text-red-600 text-center" rowspan="7">Xe số</td>
                 <td class="bg-gray-50 box-border border-2 rounded-lg p-3 px-6">{% include "components/motor_card_mini.twig" %}</td>
-                <td class="bg-gray-50 box-border border-2 rounded-lg text-center">Sua Xoa Cap nhat</td>
+                <td class="bg-gray-50 box-border border-2 rounded-lg text-center">
+                    <a class="w-10 h-10 inline-block rounded-lg border-2 border-blue-600 text-blue-600 duration-200 hover:bg-blue-600 hover:text-white" title="Chỉnh sửa" href=""><i class="fa-solid mt-2.5 fa-pen"></i></a>
+                    <a class="w-10 h-10 inline-block rounded-lg border-2 border-red-600 text-red-600 duration-200 hover:bg-red-600 hover:text-white" title="Xóa" href=""><i class="fa-solid mt-2.5 fa-trash"></i></a>
+                </td>
             </tr>
             {% for item in range(0,5) %}
                 <tr>
                     <td class="bg-gray-50 box-border border-2 rounded-lg p-3 px-6">{% include "components/motor_card_mini.twig" %}</td>
-                    <td class="bg-gray-50 box-border border-2 rounded-lg text-center">Sua Xoa Cap nhat</td>
+                    <td class="bg-gray-50 box-border border-2 rounded-lg text-center">
+                        <a class="w-10 h-10 inline-block rounded-lg border-2 border-blue-600 text-blue-600 duration-200 hover:bg-blue-600 hover:text-white" title="Chỉnh sửa" href=""><i class="fa-solid mt-2.5 fa-pen"></i></a>
+                        <a class="w-10 h-10 inline-block rounded-lg border-2 border-red-600 text-red-600 duration-200 hover:bg-red-600 hover:text-white" title="Xóa" href=""><i class="fa-solid mt-2.5 fa-trash"></i></a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>

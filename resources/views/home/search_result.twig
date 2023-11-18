@@ -1,0 +1,23 @@
+{% extends "components/layout.twig" %}
+
+{% block banner %}
+    <div id="banner">
+        <img class="w-full" src="{{ asset('images/banner2.jpg') }}" alt="">
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div id="products" class="my-12">
+        <h2 class="text-6xl text-gray-300 my-12 font-bold font">
+            Kết quả tìm kiếm: {{ search }}
+        </h2>
+        <div class="grid grid-cols-4 gap-10 overflow-auto">     
+            {% for motor in motors %}
+                {% include "components/motor_card_slim.twig" %}
+            {% endfor %}
+            {% if motors | length == 0 %}
+                <span class="text-xl">Không tìm thấy kết quả nào</span>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

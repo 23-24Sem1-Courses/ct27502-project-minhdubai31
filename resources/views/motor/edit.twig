@@ -1,0 +1,181 @@
+{% extends "components/layout.twig" %}
+
+
+{% block content %}
+	<link rel="stylesheet" href="{{ asset('css/coloris.css') }}"/>
+	<h2 class="text-6xl text-gray-300 font-bold mt-28 my-12">
+		Chỉnh sửa xe
+	</h2>
+
+	<div id="product-edit">
+		<form method="post" action="/motors/update" enctype="multipart/form-data">
+			<input type="hidden" name="mt_id" value="{{ motor.mt_id }}">
+			<div class="bg-gray-200 rounded-lg p-5 mt-12 mb-2">
+				<div id="base" class="grid grid-cols-5 gap-10 m-5">
+					<div class="col-span-2 text-center">
+						<img id="main-image" class="w-full object-contain rounded-lg" src="								
+							{% if asset('uploads/' ~ motor.mt_sample_img) %}
+								{{ asset('uploads/' ~ motor.mt_sample_img) }}
+							{% else %}
+								{{ asset('images/motor_example.png') }}
+							{% endif %}
+						" alt="">
+						<label for="selected-image" class="mt-3 cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white inline-block me-2 border-2 border-red-600">Thay ảnh mới</label>
+						<input id="selected-image" hidden type="file" accept="image/* }}" name="mt_sample_img">
+						<div class="text-left my-9 text-xl">
+							<label for="motor-type" class="font-bold">Dòng xe:</label>
+							<select id="motor-type" class="m-auto cursor-pointer rounded-lg p-2 px-5 text-red-600 text-xl font-bold focus:outline-none" name="type_id">
+								<option {% if motor.type_id == null %} selected {% endif %} disabled value="">Vui lòng chọn dòng xe</option>
+								{% for type in types %}
+									<option {% if type.type_id == motor.type_id %} selected {% endif %} value="{{ type.type_id }}">{{ type.type_name | upper }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					</div>
+					<div class="col-span-3">
+						<input required class="text-4xl text-red-600 font-bold rounded-lg px-5 focus:outline-none leading-loose w-full" value="{{ motor.mt_name }}" placeholder="Tên xe }}" name="mt_name">
+						<p class="text-2xl font-bold mb-5 mt-2">Giá từ:
+							<input id="dummy-price" required class="rounded-lg leading-relaxed px-5 focus:outline-none" value="{{ motor.mt_price|number_format(0, '', '.') }}" placeholder="Giá xe" type="text">
+							VNĐ
+							<input id="real-price" hidden type="number" name="mt_price" value="{{ motor.mt_price }}">
+						</p>
+						<textarea required class="text-gray-400 rounded-lg w-full focus:outline-none p-3" rows="5" placeholder="Mô tả }}" name="mt_descr">{{ motor.mt_descr }}</textarea>
+						<div class="colors flex flex-wrap items-center mt-5">
+							<p class="font-bold w-full mb-2">Màu sắc:</p>
+							{% for color in motor.colors %}
+								<div class="w-full mb-2 flex items-center gap-1">
+									<input required class="motor-color rounded-lg leading-relaxed p-2 px-5 focus:outline-none" value="{{ color.color_name }}" placeholder="Tên màu" type="text" name="color_name[]">
+									<div class="clr-field" style="color: {{ color.color_hex }};">
+										<button type="button" aria-labelledby="clr-open-label" class="rounded-r-lg"></button>
+										<input required class="rounded-lg w-36 leading-relaxed p-2 px-5 focus:outline-none" value="{{ color.color_hex }}" placeholder="Mã màu" type="text" name="color_hex[]" data-coloris>
+									</div>
+									<button onclick="removeColor(this);" class="ms-1 bg-white w-10 h-10 rounded-lg border-2 border-red-600 text-red-600 duration-200 hover:bg-red-600 hover:text-white" title="Xóa"><i class="fa-solid fa-trash"></i></button>
+								</div>
+							{% endfor %}
+							<div class="flex items-center">
+								<span id="add-color" class="rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white cursor-pointer inline-block me-2 border-2 border-red-600">+ Thêm màu mới</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="specs" class="my-12">
+					<h2 class="text-2xl font-bold my-2">Thông số kỹ thuật</h2>
+					<div class="bg-gray-300/75 rounded-lg p-5 py-10">
+						<ul class="w-5/6 m-auto">
+							<li class="grid grid-cols-2 mb-2">
+								<p class="bg-white/60 rounded-lg p-3 px-16 leading-relaxed">Khối lượng <span class="text-xs">(kg)</span></p>
+								<input required type="number" step="0.01" min="0" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none" value="{{ motor.mt_weight }}" name="mt_weight">
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="leading-relaxed p-3 px-16">Dài x Rộng x Cao <span class="text-xs">(mm)</span></p>
+								<div class="grid grid-cols-11 ms-2">
+									<input required type="number" step="0.01" min="0" class="col-span-3 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none" value="{{ motor.mt_length }}" name="mt_length">
+									<span class="col-span-1 m-auto">x</span>
+									<input required type="number" step="0.01" min="0" class="col-span-3 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none" value="{{ motor.mt_width }}" name="mt_width">
+									<span class="col-span-1 m-auto">x</span>
+									<input required type="number" step="0.01" min="0" class="col-span-3 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none" value="{{ motor.mt_height }}" name="mt_height">
+								</div>
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="bg-white/60 rounded-lg p-3 px-16 leading-relaxed">Độ cao yên <span class="text-xs">(mm)</span></p>
+								<input required type="number" step="0.01" min="0" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none" value="{{ motor.mt_seat_height }}" name="mt_seat_height">
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="leading-relaxed p-3 px-16">Khoảng sáng gầm xe <span class="text-xs">(mm)</span></p>
+								<input required type="number" step="0.01" min="0" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none" value="{{ motor.mt_ground_clearance }}" name="mt_ground_clearance">
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="bg-white/60 rounded-lg p-3 px-16 leading-relaxed">Dung tích bình xăng <span class="text-xs">(lít)</span></p>
+								<input required type="number" step="0.01" min="0" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none" value="{{ motor.mt_fuel }}" name="mt_fuel">
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="leading-relaxed p-3 px-16">Mức tiêu thụ nhiên liệu <span class="text-xs">(lít/100km)</span></p>
+								<input required type="number" step="0.01" min="0" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none" value="{{ motor.mt_consumption }}" name="mt_consumption">
+							</li>
+							<li class="grid grid-cols-2 mb-2">
+								<p class="bg-white/60 rounded-lg p-3 px-16 leading-relaxed">Dung tích xy-lanh <span class="text-xs">(cc)</span></p>
+								<input required type="number" step="0.01" min="0" class="ms-2 font-bold rounded-lg leading-relaxed p-2 px-5 focus:outline-none" value="{{ motor.mt_cc }}" name="mt_cc">
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="gallery" class="mt-12 mb-5">
+					<h2 class="text-2xl font-bold my-2">Thư viện ảnh</h2>
+					<input type="file" hidden accept="image/*" name="gallery[]" id="selected-gallery" multiple>
+					<div class="pswp-gallery grid grid-cols-12 gap-1.5" id="gallery-images">
+						{% for image in motor.images %}
+							<div class="col-span-3 relative old-image">
+								<img
+									src="{{ asset('uploads/' ~ image.img_path) }}"
+									alt=""
+									class="w-full h-44 object-cover border-2 border-gray-300 rounded-lg"
+								/>
+								<button onclick="oldImageRemover(this, {{ image.img_id }});" class="absolute top-2 right-2 bg-white w-10 h-10 rounded-lg border-2 border-red-600 text-red-600 duration-200 hover:bg-red-600 hover:text-white" title="Xóa"><i class="fa-solid fa-trash"></i></button>
+							</div>
+						{% endfor %}
+					</div>
+					<label for="selected-gallery" class="mt-3 cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white inline-block me-2 border-2 border-red-600">Thêm ảnh</label>
+				</div>
+			</div>
+
+			<div class="text-center">
+				<button type="submit" class="mb-12 cursor-pointer m-auto rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white inline-block me-2 border-2 border-red-600">Cập nhật</button>
+			</div>
+		</form>
+	</div>
+
+	<script src="{{ asset('js/coloris.js') }}"></script>
+	<script src="{{ asset('js/images_change_handler.js') }}"></script>
+
+
+	<script>
+		$(function () {
+			$("#add-color").click((e) => {
+				let addcolor = `
+						<div class="w-full mb-2 flex items-center gap-1">
+							<input required class="motor-color rounded-lg leading-relaxed p-2 px-5 focus:outline-none" placeholder="Tên màu" type="text" name="color_name[]">
+							<div class="clr-field">
+								<button type="button" aria-labelledby="clr-open-label" class="rounded-r-lg"></button>
+								<input required class="rounded-lg w-36 leading-relaxed p-2 px-5 focus:outline-none" placeholder="Mã màu" type="text"  name="color_hex[]" data-coloris>
+							</div>
+							<button onclick="removeColor(this);" class="ms-1 bg-white w-10 h-10 rounded-lg border-2 border-red-600 text-red-600 duration-200 hover:bg-red-600 hover:text-white" title="Xóa"><i class="fa-solid fa-trash"></i></button>
+						</div>
+					`;
+				$(e.target).parent().before(addcolor);
+			});
+		});
+
+		function removeColor(el) {
+			if ($(".motor-color").length == 1) {
+				let addcolor = `
+					<div class="w-full mb-2 flex items-center gap-1">
+						<input required class="motor-color rounded-lg leading-relaxed p-2 px-5 focus:outline-none" placeholder="Tên màu" type="text" name="color_name[]">
+						<div class="clr-field">
+							<button type="button" aria-labelledby="clr-open-label" class="rounded-r-lg"></button>
+							<input required class="rounded-lg w-36 leading-relaxed p-2 px-5 focus:outline-none" placeholder="Mã màu" type="text"  name="color_hex[]" data-coloris>
+						</div>
+					</div>
+				`;
+				$(el).parent().before(addcolor);
+			}
+			$(el).parent().remove();
+
+		}
+
+		$("#dummy-price").keyup(function (e) { 
+			// Get the input element
+			let input = e.target;
+
+			// Remove non-numeric characters
+			let inputValue = input.value.replace(/\D/g, '');
+			$("#real-price").val(Number(inputValue));
+			console.log(Number(inputValue));
+
+			// Format the number with commas
+			let formattedValue = Number(inputValue).toLocaleString('de-DE');
+
+			// Update the input value with the formatted number
+			input.value = formattedValue;
+		});
+	</script>
+{% endblock %}

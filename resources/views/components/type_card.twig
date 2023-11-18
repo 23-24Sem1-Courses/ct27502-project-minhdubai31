@@ -1,0 +1,25 @@
+<div class="type-show col-span-1 rounded-lg bg-gray-50 box-border border-2 p-3 px-6 text-center">
+    <h3 class="text-xl text-center font-bold uppercase">{{ type.type_name }}</h3>
+    <p class="text-xs mt-2">Số lượng xe: {{ type.motors | length }}</p>
+    <div class="text-center mt-5">
+        <div class="flex items-center gap-2 justify-center">
+            <button onclick="editType(this);" class="w-10 h-10 inline-block rounded-lg border-2 border-blue-600 text-blue-600 duration-200 hover:bg-blue-600 hover:text-white" title="Chỉnh sửa"><i class="fa-solid fa-pen"></i></button>
+            <form class="inline-block" action="/types/delete" method="post" onsubmit="deleteConfirm(this, event, 'dòng xe {{ type.type_name | upper }}'); (event)">
+                <input type="hidden" name="type_id" value="{{ type.type_id }}">
+                <button class="w-10 h-10 inline-block rounded-lg border-2 border-red-600 text-red-600 duration-200 hover:bg-red-600 hover:text-white" title="Xóa"><i class="fa-solid fa-trash"></i></button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{# Edit type form #}
+<div hidden class="type-edit col-span-1 rounded-lg bg-gray-50 box-border border-2 p-3 px-6 text-center">
+    <form action="/types/update" method="post">
+        <input type="hidden" name="type_id" value="{{ type.type_id }}">
+        <input required class="text-xl w-full border-2 mb-6 rounded-lg p-2 text-center font-bold uppercase placeholder:text-sm placeholder:text-gray-300" value="{{ type.type_name | upper }}" type="text" placeholder="Tên dòng xe" name="type_name">
+        <div class="flex items-center gap-2 justify-center">
+            <button type="submit" class="h-10 w-10 inline-block rounded-lg border-2 border-blue-600 text-blue-600 duration-200 hover:bg-blue-600 hover:text-white" title="Lưu"><i class="fa-solid text-xl fa-floppy-disk"></i></button>
+            <button type="button" onclick="hideEditTypeForm(this);" class="h-10 px-3 inline-block rounded-lg border-2 border-red-600 text-red-600 duration-200 hover:bg-red-600 hover:text-white" title="Hủy">Hủy</button>
+        </div>
+    </form>
+</div>

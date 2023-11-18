@@ -2,33 +2,53 @@
 	<h2 class="text-2xl font-bold my-2">Thông số kỹ thuật</h2>
 	<div class="bg-gray-200 rounded-lg p-5 py-10">
 		<ul class="w-2/3 m-auto">
+			{# Weight #}
 			<li class="grid grid-cols-2 bg-white/60 rounded-lg p-3 px-20">
 				<p>Khối lượng</p>
-				<p class="font-bold">abc</p>
+				<p class="font-bold">{{ custom_number_format(motor.mt_weight) }}<span class="text-sm"> kg</span></p>
 			</li>
+
+			{# Length x Width x Height #}
 			<li class="grid grid-cols-2 p-3 px-20">
 				<p>Dài x Rộng x Cao</p>
-				<p class="font-bold">abc</p>
+				<p class="font-bold">
+					{{ custom_number_format(motor.mt_length) }}
+					<span class="text-sm"> mm</span> 
+					x {{ custom_number_format(motor.mt_width) }}
+					<span class="text-sm"> mm</span> 
+					x {{ custom_number_format(motor.mt_height) }}
+					<span class="text-sm"> mm</span>
+				</p>
 			</li>
+
+			{# Seat height #}
 			<li class="grid grid-cols-2 bg-white/60 rounded-lg p-3 px-20">
 				<p>Độ cao yên</p>
-				<p class="font-bold">abc</p>
+				<p class="font-bold">{{ custom_number_format(motor.mt_seat_height) }}<span class="text-sm"> mm</span></p>
 			</li>
+
+			{# Ground clearance #}
 			<li class="grid grid-cols-2 p-3 px-20">
 				<p>Khoảng sáng gầm xe</p>
-				<p class="font-bold">abc</p>
+				<p class="font-bold">{{ custom_number_format(motor.mt_ground_clearance) }}<span class="text-sm"> mm</span></p>
 			</li>
+
+			{# Fuel capacity #}
 			<li class="grid grid-cols-2 bg-white/60 rounded-lg p-3 px-20">
 				<p>Dung tích bình xăng</p>
-				<p class="font-bold">abc</p>
+				<p class="font-bold">{{ custom_number_format(motor.mt_fuel) }}<span class="text-sm"> lít</span></p>
 			</li>
+
+			{# Fuel consumption #}
 			<li class="grid grid-cols-2 p-3 px-20">
 				<p>Mức tiêu thụ nhiên liệu</p>
-				<p class="font-bold">abc</p>
+				<p class="font-bold">{{ custom_number_format(motor.mt_consumption) }}<span class="text-sm"> lít/100km</span></p>
 			</li>
+
+			{# Cylinder capacity #}
 			<li class="grid grid-cols-2 bg-white/60 rounded-lg p-3 px-20">
 				<p>Dung tích xy-lanh</p>
-				<p class="font-bold">abc</p>
+				<p class="font-bold">{{ custom_number_format(motor.mt_cc) }}<span class="text-sm"> cc</span></p>
 			</li>
 		</ul>
 	</div>

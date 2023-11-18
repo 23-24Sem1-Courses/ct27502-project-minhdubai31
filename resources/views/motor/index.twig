@@ -12,14 +12,10 @@
             Lựa chọn phong cách của bạn
         </h2>
         <div class="flex gap-3 mt-10 mb-5">
-            {% for item in range(0,5) %}
-                <a class="inline-block cursor-pointer rounded-lg p-2 px-5 text-red-600 bg-white hover:bg-red-600 duration-200 hover:text-white border-2 border-red-600" href="">
-                    abc
-                </a>
-            {% endfor %}
+            {% include "partials/motor_types_list.twig" %}
         </div>
         <div class="grid grid-cols-4 gap-10 overflow-auto">
-            {% for item in range(0, 3) %}
+            {% for motor in motors %}
                 {% include "components/motor_card_slim.twig" %}
             {% endfor %}
         </div>

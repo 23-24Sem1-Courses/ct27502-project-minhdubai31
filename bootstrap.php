@@ -4,6 +4,9 @@ use Bramus\Router\Router;
 require_once __DIR__ . '/vendor/autoload.php';
 
 
+define("PUBLIC_PATH", __DIR__ . '/public/');
+
+
 // Dotenv
 Dotenv\Dotenv::createImmutable(__DIR__)->load();
 
@@ -22,6 +25,7 @@ $manager->addConnection([
 $manager->setAsGlobal();
 $manager->bootEloquent();
 
+// Bramus router
 $router = new Router();
 $router->setNamespace('App\Controllers');
 

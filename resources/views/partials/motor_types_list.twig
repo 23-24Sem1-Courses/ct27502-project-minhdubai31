@@ -2,10 +2,10 @@
 {% if type_filter == null %}text-white bg-red-600 {% else %} text-red-600 bg-white {% endif %}" href="?">
     Tất cả xe
 </a>
-{% for type in types %}
+{% for type in types_list %}
     <form action="">
         <input type="hidden" name="type" value="{{ type.type_id }}">
-        <button class="inline-block cursor-pointer rounded-lg p-2 px-5 {% if type_filter == type.type_id %}text-white bg-red-600 {% else %} text-red-600 bg-white {% endif %} hover:bg-red-600 duration-200 hover:text-white border-2 border-red-600">
+        <button class="inline-block cursor-pointer rounded-lg p-2 px-5 {% if type_filter.type_id == type.type_id %}text-white bg-red-600 {% else %} text-red-600 bg-white {% endif %} hover:bg-red-600 duration-200 hover:text-white border-2 border-red-600">
             {{ type.type_name | upper }}
         </button>
     </form>

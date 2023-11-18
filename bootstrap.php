@@ -4,6 +4,7 @@ use Bramus\Router\Router;
 require_once __DIR__ . '/vendor/autoload.php';
 
 
+// Path to public folder
 define("PUBLIC_PATH", __DIR__ . '/public/');
 
 
@@ -24,6 +25,7 @@ $manager->addConnection([
 
 $manager->setAsGlobal();
 $manager->bootEloquent();
+
 
 // Bramus router
 $router = new Router();

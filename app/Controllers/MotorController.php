@@ -16,7 +16,7 @@ class MotorController {
         // Check if has type filter
         if(isset($_GET["type"])) {
             $motors = Motor::where("type_id", $_GET["type"])->get();
-            $type_filter = $_GET["type"];
+            $type_filter = Type::find($_GET["type"]);
         }
         else {
             $motors = Motor::all();
@@ -24,7 +24,7 @@ class MotorController {
         }
 
         return view("motor/index.twig", [
-            "types" => Type::all(),
+            "types_list" => Type::all(),
             "motors" => $motors,
             "type_filter" => $type_filter
         ]);

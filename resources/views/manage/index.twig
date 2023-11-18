@@ -9,7 +9,7 @@
     {# List of types #}
     <h6 class="text-lg font-bold px-2 mb-2">Dòng xe</h6>
     <div class="grid grid-cols-6 gap-2 px-2">
-        {% for type in types %}
+        {% for type in types_list %}
             {% include "components/type_card.twig" %}
         {% endfor %}
         
@@ -42,6 +42,7 @@
                 <th class="rounded-lg bg-red-600 text-white p-2 w-3/4">Thông tin xe</th>
                 <th class="rounded-lg bg-red-600 text-white p-2 w-32">Cập nhật</th>
             </tr>
+
             {% for type in types %}
                 <tr>
                     {% if type.motors | length > 0 %}

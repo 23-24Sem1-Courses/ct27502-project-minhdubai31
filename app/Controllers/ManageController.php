@@ -12,7 +12,7 @@ class ManageController {
         // Check if has type filter
         if(isset($_GET["type"])) {
             $types = [Type::find($_GET["type"])];
-            $type_filter = $_GET["type"];
+            $type_filter = Type::find($_GET["type"]);
         }
         else {
             $types = Type::all();
@@ -22,6 +22,7 @@ class ManageController {
         }
 
         $returnData["types"] = $types;
+        $returnData["types_list"] = Type::all();
         $returnData["type_filter"] = $type_filter;
 
         return view("manage/index.twig", $returnData);
